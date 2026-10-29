@@ -1,0 +1,97 @@
+cff-version: "1.2.0"
+message: If you use this app, please cite it and the works it builds on, listed under references.
+type: software
+title: Cytometry UMAP
+abstract: A seeded, reproducible two-dimensional UMAP embedding of the per-sample cell subsample written
+  by the FlowSOM step, with maps of the cells coloured by metacluster label, condition, batch and the
+  expression of every marker.
+authors:
+- name: Pennsieve (University of Pennsylvania)
+repository-code: https://github.com/pennsieve-apps/processor-cytometry-umap
+license: Apache-2.0
+keywords:
+- cytometry
+- flow-cytometry
+- umap
+- dimensionality-reduction
+- visualization
+- immunology
+references:
+- type: article
+  title: Dimensionality reduction for visualizing single-cell data using UMAP
+  authors:
+  - family-names: Becht
+    given-names: Etienne
+  - family-names: McInnes
+    given-names: Leland
+  - family-names: Healy
+    given-names: John
+  - family-names: Dutertre
+    given-names: Charles-Antoine
+  - family-names: Kwok
+    given-names: Immanuel W H
+  - family-names: Ng
+    given-names: Lai Guan
+  - family-names: Ginhoux
+    given-names: Florent
+  - family-names: Newell
+    given-names: Evan W
+  year: 2019
+  journal: Nature Biotechnology
+  volume: 37
+  issue: '1'
+  start: '38'
+  end: '44'
+  doi: 10.1038/nbt.4314
+- type: article
+  title: 'UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction'
+  authors:
+  - family-names: McInnes
+    given-names: Leland
+  - family-names: Healy
+    given-names: John
+  - family-names: Melville
+    given-names: James
+  year: 2018
+  url: https://arxiv.org/abs/1802.03426
+  doi: 10.48550/arXiv.1802.03426
+- type: article
+  title: 'FlowSOM: Using self-organizing maps for visualization and interpretation of cytometry data'
+  authors:
+  - family-names: Van Gassen
+    given-names: Sofie
+  - family-names: Callebaut
+    given-names: Britt
+  - family-names: Van Helden
+    given-names: Mary J.
+  - family-names: Lambrecht
+    given-names: Bart N.
+  - family-names: Demeester
+    given-names: Piet
+  - family-names: Dhaene
+    given-names: Tom
+  - family-names: Saeys
+    given-names: Yvan
+  year: 2015
+  journal: Cytometry Part A
+  volume: 87
+  issue: '7'
+  start: '636'
+  end: '645'
+  doi: 10.1002/cyto.a.22625
+- type: data
+  title: 'CytoBatchFlagR: Spectral flow cytometry dataset'
+  authors:
+  - family-names: Koenig
+    given-names: Zachary
+  - family-names: Andorf
+    given-names: Sandra
+  - family-names: Tilburgs
+    given-names: Tamara
+  - family-names: Eswar
+    given-names: Shruti
+  year: 2025
+  publisher:
+    name: Zenodo
+  doi: 10.5281/zenodo.15388817
+  license: CC-BY-4.0
