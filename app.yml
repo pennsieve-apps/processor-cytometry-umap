@@ -1,0 +1,91 @@
+# yaml-language-server: $schema=https://schemas.pennsieve.io/app-manifest/v1.json
+schemaVersion: "1.0"
+application:
+  name: Cytometry UMAP
+  description: >-
+    A two-dimensional UMAP embedding (McInnes, Healy & Melville; Becht et al. 2018 for
+    single-cell cytometry) of the per-sample cell subsample that the flowsom step writes,
+    on the same clustering markers, with PNG maps of the cells coloured by FlowSOM
+    metacluster label, condition, batch and the expression of every marker. Seeded and
+    reproducible.
+  type: processor
+  tags:
+    - cytometry
+    - flow-cytometry
+    - umap
+    - dimensionality-reduction
+    - visualization
+    - immunology
+runtime:
+  cpu: 2048
+  memory: 4096
+  # standard (ECS) by default; a workflow can run it as a Lambda function instead
+  # (the image serves both, see processor/entry.py). Measured well inside Lambda's
+  # 10 GB / 15 min at the default MAX_CELLS (see README, Runtime).
+  computeTypes:
+    - standard
+    - lambda
+  timeoutSeconds: 900
+parameters:
+  - name: N_NEIGHBORS
+    type: integer
+    label: Neighbours
+    description: UMAP n_neighbors, the size of the local neighbourhood (larger keeps more global structure).
+    defaultValue: 15
+    min: 2
+    max: 200
+  - name: MIN_DIST
+    type: number
+    label: Minimum distance
+    description: >-
+      UMAP min_dist, how tightly points may pack. 0.3 (umap-learn's default is 0.1) spreads
+      dense populations enough to see gradients inside them, such as activation, with
+      100,000 points, while keeping populations apart.
+    defaultValue: 0.3
+    min: 0
+    max: 1
+  - name: MAX_CELLS
+    type: integer
+    label: Maximum cells
+    description: Cells embedded at most; above it, a seeded subsample with an equal share per sample.
+    defaultValue: 100000
+    min: 10
+  - name: MARKERS
+    type: string
+    label: Markers
+    description: >-
+      Comma-separated marker columns to embed on. Empty: the clustering markers flowsom
+      recorded in cells.json (else every marker column).
+    defaultValue: ""
+  - name: SEED
+    type: integer
+    description: Seed for the subsample and UMAP (random_state).
+    defaultValue: 42
+inputs:
+  - name: cells
+    description: >-
+      The flowsom step's cells output: cells.csv.gz (sample_id, cluster, metacluster, label, one
+      column per marker) and cells.json (clustering_markers).
+    mediaTypes:
+      - application/gzip
+      - application/json
+    placement: subfolder
+    required: true
+  - name: metadata
+    description: fcs-prep's metadata; samples.csv (sample_id, condition, batch) colours the maps by condition and batch.
+    mediaTypes:
+      - text/csv
+      - application/json
+    placement: subfolder
+    required: false
+# One output: the whole OUTPUT_DIR.
+outputs:
+  - name: embedding
+    description: >-
+      embedding.csv.gz (sample_id, metacluster, label, umap1, umap2, condition, batch),
+      umap_by_label.png, umap_by_condition.png, umap_by_batch.png, umap_markers.png and
+      provenance.json.
+    mediaTypes:
+      - application/gzip
+      - image/png
+      - application/json
