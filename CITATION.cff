@@ -1,5 +1,6 @@
 cff-version: "1.2.0"
-message: If you use this app, please cite it and the works it builds on, listed under references.
+message: >-
+  If you use this app, please cite the work it implements (preferred-citation), this release, and Pennsieve (RRID:SCR_021677); the other works it builds on are listed under references.
 type: software
 title: Cytometry UMAP
 abstract: A seeded, reproducible two-dimensional UMAP embedding of the per-sample cell subsample written
@@ -16,6 +17,34 @@ keywords:
 - dimensionality-reduction
 - visualization
 - immunology
+# The work this app implements; the release report's "How to cite" puts it first.
+preferred-citation:
+  type: article
+  title: Dimensionality reduction for visualizing single-cell data using UMAP
+  authors:
+  - family-names: Becht
+    given-names: Etienne
+  - family-names: McInnes
+    given-names: Leland
+  - family-names: Healy
+    given-names: John
+  - family-names: Dutertre
+    given-names: Charles-Antoine
+  - family-names: Kwok
+    given-names: Immanuel W H
+  - family-names: Ng
+    given-names: Lai Guan
+  - family-names: Ginhoux
+    given-names: Florent
+  - family-names: Newell
+    given-names: Evan W
+  year: 2019
+  journal: Nature Biotechnology
+  volume: 37
+  issue: '1'
+  start: '38'
+  end: '44'
+  doi: 10.1038/nbt.4314
 references:
 - type: article
   title: Dimensionality reduction for visualizing single-cell data using UMAP
